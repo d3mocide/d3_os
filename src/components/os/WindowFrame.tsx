@@ -12,9 +12,18 @@ interface WindowFrameProps {
   title: string;
   children: React.ReactNode;
   initialPos?: { x: number; y: number };
+  defaultSize?: { width: number | string; height: number | string };
+  minSize?: { width: number; height: number };
 }
 
-const WindowFrame = ({ id, title, children, initialPos = { x: 50, y: 50 } }: WindowFrameProps) => {
+const WindowFrame = ({ 
+    id, 
+    title, 
+    children, 
+    initialPos = { x: 50, y: 50 },
+    defaultSize = { width: 600, height: 400 },
+    minSize = { width: 320, height: 200 }
+}: WindowFrameProps) => {
   const { windows, closeWindow, minimizeWindow, focusWindow } = useOSStore();
   const { playClick, playHover } = useSoundFX();
   const windowState = windows.find((w) => w.id === id);
@@ -43,9 +52,9 @@ const WindowFrame = ({ id, title, children, initialPos = { x: 50, y: 50 } }: Win
             transition={{ duration: 0.2 }}
           >
             <Resizable
-                defaultSize={{ width: 600, height: 400 }}
-                minWidth={320}
-                minHeight={200}
+                defaultSize={defaultSize}
+                minWidth={minSize.width}
+                minHeight={minSize.height}
                 className="flex flex-col"
                 handleClasses={{
                     bottomRight: "cursor-se-resize z-50",

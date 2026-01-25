@@ -30,13 +30,23 @@ const WindowContent = ({ id }: { id: string }) => {
 
 const Desktop = () => {
     const { windows, openWindow } = useOSStore();
+    
+    const getWindowConfig = (id: string, data: any) => {
+        if (id === 'terminal') return { defaultSize: { width: 650, height: 400 } };
+        if (id === 'projects') return { defaultSize: { width: 800, height: 500 } };
+        if (id === 'settings') return { defaultSize: { width: 450, height: 600 } };
+        if (id.startsWith('browser_') || data?.type === 'browser') {
+            return { defaultSize: { width: 1024, height: 720 }, minSize: { width: 600, height: 400 } };
+        }
+        return {};
+    };
 
     useEffect(() => {
         // Auto-launch terminal on startup
         if (windows.length === 0) {
             openWindow('terminal', 'D3_TERM v2.0');
         }
-    }, []);
+    }, [windows, openWindow]);
 
     return (
         <div className="relative w-full h-screen overflow-hidden">
@@ -49,6 +59,7 @@ const Desktop = () => {
                         id={win.id} 
                         title={win.title}
                         initialPos={{ x: 100 + (windows.indexOf(win) * 30), y: 100 + (windows.indexOf(win) * 20) }}
+                        {...getWindowConfig(win.id, win.data)}
                     >
                         <Suspense fallback={
                             <div className="flex items-center justify-center h-full">
