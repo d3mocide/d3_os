@@ -27,15 +27,13 @@
 - Docker & Docker Compose
 - Git
 
-### Installation
+### Installation (Production)
+
+To run the production version (pulls the latest image from GHCR):
 
 ```bash
-# Clone the repository
-git clone https://github.com/d3mocide/d3_os.git
-cd d3_os
-
-# Start the development environment
-docker compose up -d
+# Start the production environment
+docker compose -f docker-compose.prod.yml up -d
 
 # Access the OS
 open http://localhost:31337
@@ -43,18 +41,20 @@ open http://localhost:31337
 
 ### Development
 
-```bash
-# Install dependencies
-docker compose run --rm app npm install
+To run the development version (local build with hot-reloading):
 
+```bash
 # Start dev server
-docker compose up -d
+docker compose -f docker-compose.dev.yml up -d
+
+# Install dependencies if needed
+docker compose -f docker-compose.dev.yml run --rm app npm install
 
 # View logs
-docker compose logs -f
+docker compose -f docker-compose.dev.yml logs -f
 
 # Stop the environment
-docker compose down
+docker compose -f docker-compose.dev.yml down
 ```
 
 ## 🛠️ Tech Stack

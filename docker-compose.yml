@@ -1,12 +1,6 @@
-
 services:
   app:
-    build: .
+    image: ghcr.io/d3mocide/d3_os:main
     ports:
-      - "31337:5173"
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - WATCHPACK_POLLING=true
-    command: npm run dev -- --host
+      - "31337:80"
+    restart: always
