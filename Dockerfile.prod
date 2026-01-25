@@ -3,10 +3,10 @@ FROM node:20-bookworm-slim AS build
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package file
+COPY package.json ./
 
-# Install dependencies
+# Install dependencies (ignoring local lock file to avoid binary mismatches)
 RUN npm install
 
 # Copy the rest of the application
