@@ -1,0 +1,12 @@
+
+services:
+  app:
+    build: .
+    ports:
+      - "31337:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
+    command: npm run dev -- --host
