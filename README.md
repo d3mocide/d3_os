@@ -33,7 +33,7 @@ To run the production version (pulls the latest image from GHCR):
 
 ```bash
 # Start the production environment
-docker compose -f docker-compose.prod.yml up -d
+docker compose -f docker-compose.yml up -d
 
 # Access the OS
 open http://localhost:31337

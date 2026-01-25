@@ -2,11 +2,16 @@ import { useState, useEffect } from 'react';
 import { useOSStore } from '@/store/useOSStore';
 import { useSoundFX } from '@/hooks/useSoundFX';
 import { Terminal, LayoutGrid, Monitor } from 'lucide-react';
+import { useIP } from '@/hooks/useIP';
 import StartMenu from './StartMenu';
+
+import { useSimulatedCPU } from '@/hooks/useSimulatedCPU';
 
 const Taskbar = () => {
   const { windows, focusWindow, openWindow } = useOSStore();
   const { playClick } = useSoundFX();
+  const { ip } = useIP();
+  const cpu = useSimulatedCPU();
   const [time, setTime] = useState(new Date());
   const [isStartOpen, setIsStartOpen] = useState(false);
 
@@ -75,8 +80,8 @@ const Taskbar = () => {
 
       {/* System Tray */}
       <div className="flex items-center space-x-4 pl-4 border-l border-neon-green/20 text-xs font-mono text-neon-green">
-        <div className="hidden md:block">NET: ONLINE</div>
-        <div className="hidden md:block">CPU: 12%</div>
+        <div className="hidden md:block">NET: {ip}</div>
+        <div className="hidden md:block">CPU: {cpu}%</div>
         <div className="text-neon-yellow">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
       </div>
 

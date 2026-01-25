@@ -3,6 +3,7 @@ import MatrixRain from '@/components/MatrixRain';
 import LandingCard from '@/components/LandingCard';
 import Desktop from '@/components/os/Desktop';
 import Scanlines from '@/components/fx/Scanlines';
+import Branding from '@/components/Branding';
 
 function App() {
   const { isBooting, isShutDown } = useOSStore();
@@ -12,6 +13,19 @@ function App() {
       
       {/* Persistent Background FX */}
       <MatrixRain />
+      
+      {/* Background Branding - Stays behind windows but in front of wallpaper */}
+      {/* When booting: Z-30 & Moved UP to align with Card Gap */}
+      {/* When desktop: Z-0 & Moved back to Center */}
+      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden transition-all duration-[2000ms] ease-in-out ${isBooting ? 'z-30 -translate-y-32' : 'z-0 translate-y-0'}`}>
+        <Branding 
+            className={`transition-all duration-[2000ms] ease-in-out ${
+                isBooting 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-50 scale-[1.1] blur-none'
+            }`} 
+        />
+      </div>
       
       <Scanlines />
 

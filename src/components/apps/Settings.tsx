@@ -1,8 +1,10 @@
 import { Volume2, VolumeX, Info, Palette } from 'lucide-react';
+import { useIP } from '@/hooks/useIP';
 import { useOSStore } from '@/store/useOSStore';
 
 const Settings = () => {
   const { volume, isMuted, setVolume, setMuted, soundEnabled, toggleSound } = useOSStore();
+  const { ip } = useIP();
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseInt(e.target.value);
@@ -149,7 +151,7 @@ const Settings = () => {
           </div>
           <div className="flex justify-between">
             <span className="text-gray-400">Network:</span>
-            <span className="text-neon-green">d3FRAG NETWORKS</span>
+            <span className="text-neon-green">{ip}</span>
           </div>
         </div>
       </div>

@@ -50,6 +50,13 @@ const MatrixRain = () => {
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+
+      const newColumns = Math.ceil(canvas.width / fontSize);
+      
+      // If screen widened, add new drops scattered vertically to fill void immediately
+      for (let i = drops.length; i < newColumns; i++) {
+        drops[i] = Math.floor(Math.random() * (canvas.height / fontSize));
+      }
     };
 
     window.addEventListener('resize', handleResize);
