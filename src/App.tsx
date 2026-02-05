@@ -30,7 +30,7 @@ function App() {
       <Scanlines />
 
       {isShutDown ? (
-        <div className="absolute inset-0 bg-black z-[100] flex flex-col items-center justify-center animate-crt-off text-neon-red font-mono">
+        <div className="absolute inset-0 bg-black z-[100] flex flex-col items-center justify-center text-neon-red font-mono">
             <h1 className="text-4xl tracking-widest animate-pulse">SYSTEM HALTED</h1>
             <p className="mt-4 text-sm animate-pulse opacity-70">IT IS NOW SAFE TO TURN OFF YOUR TERMINAL</p>
             <button 

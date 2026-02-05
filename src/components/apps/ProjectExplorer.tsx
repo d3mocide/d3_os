@@ -20,6 +20,15 @@ const projects = [
     status: 'DEV',
     sourceUrl: 'https://github.com/d3mocide/d3_os', 
     deployUrl: 'https://d3frag.net' 
+  },
+  {
+    id: 4,
+    title: 'Sovereign Watch',
+    type: 'Intelligence Platform',
+    desc: 'Distributed Multi-INT Fusion Center designed for decentralized situational awareness.',
+    status: 'ALPHA',
+    sourceUrl: 'https://github.com/d3mocide/Sovereign_Watch',
+    deployUrl: 'https://github.com/d3mocide/Sovereign_Watch'
   }
 ];
 
